@@ -25,7 +25,9 @@ void DataNode::addToTheLeft(int number) {
 		}
 		// Si ya está lleno el arreglo, enviamos el último número a next y movemos todo 1 espacio a la derecha
 		else {
-			next = new DataNode(fullCapacity);
+			if (next == nullptr) {
+				next = new DataNode(fullCapacity);
+			}
 			next->addToTheLeft(data[fullCapacity - 1]);
 			for (int i = 0; i < fullCapacity; i++) {
 				data[fullCapacity - i] = data[fullCapacity - i - 1];

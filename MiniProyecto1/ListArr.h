@@ -1,13 +1,15 @@
 #pragma once
+#include "SummaryNode.h"
 using namespace std;
 
 class ListArr{
 private:
-	// Hay que declarar nodos por aquí
-	int capacity;
-	int saved;
+	SummaryNode* root;
+	int fullCapacity;
+	int usedCapacity;
 
 public:
+	ListArr(int arrayCapacity);
 	int size();
 	void insert_left(int v);
 	void insert_right(int v);
