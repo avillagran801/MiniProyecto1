@@ -1,8 +1,7 @@
 #pragma once
-#include "ListArrADT.h"
 using namespace std;
 
-class ListArr : public ListArrADT{
+class ListArr{
 private:
 	// Hay que declarar nodos por aquí
 	int capacity;

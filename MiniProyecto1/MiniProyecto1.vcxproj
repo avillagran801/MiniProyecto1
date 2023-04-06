@@ -127,11 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DataNode.h" />
     <ClInclude Include="ListArr.h" />
-    <ClInclude Include="ListArrADT.h" />
+    <ClInclude Include="SummaryNode.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DataNode.cpp" />
     <ClCompile Include="ListArr.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="SummaryNode.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
