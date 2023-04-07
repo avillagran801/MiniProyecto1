@@ -16,7 +16,7 @@ int ListArr::size() {
 }
 
 void ListArr::insert_left(int v) {
-	
+
 }
 
 void ListArr::insert_right(int v) {

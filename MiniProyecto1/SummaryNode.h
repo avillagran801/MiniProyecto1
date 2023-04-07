@@ -21,5 +21,6 @@ public:
 	void setRightData(DataNode* dataAux);
 	void setLeftSummary(SummaryNode* summaryAux);
 	void setRightSummary(SummaryNode* summaryAux);
+	bool isLevelOne();
 };
 
