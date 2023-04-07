@@ -46,7 +46,6 @@ int DataNode::getUsedCapacity() {
 }
 
 void DataNode::printAllLinkedData() {
-	cout << "Capacidad usada del nodo: " << getUsedCapacity() << endl;
 	cout << "Numeros almacenados en el nodo: " << endl;
 
 	for (int i = 0; i < usedCapacity; i++) {

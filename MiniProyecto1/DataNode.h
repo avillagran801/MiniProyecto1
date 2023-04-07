@@ -15,4 +15,3 @@ public:
 	int getUsedCapacity();
 	void printAllLinkedData();
 };
-

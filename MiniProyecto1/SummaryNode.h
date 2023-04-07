@@ -16,11 +16,14 @@ public:
 	SummaryNode();
 	int getUsedCapacity();
 	int getFullCapacity();
+	void updateUsedCapacity();
 	void updateFullCapacity();
 	void setLeftData(DataNode* dataAux);
 	void setRightData(DataNode* dataAux);
 	void setLeftSummary(SummaryNode* summaryAux);
 	void setRightSummary(SummaryNode* summaryAux);
 	bool isLevelOne();
+	void addToTheLeft(int number);
+	void printEntireArray();
 };
 

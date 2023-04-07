@@ -9,6 +9,9 @@ ListArr::ListArr(int arrayCapacity) {
 	root = new SummaryNode();
 	DataNode* aux = new DataNode(arrayCapacity);
 	root->setLeftData(aux);
+
+	usedCapacity = root->getUsedCapacity();
+	fullCapacity = root->getFullCapacity();
 }
 
 int ListArr::size() {
@@ -16,7 +19,9 @@ int ListArr::size() {
 }
 
 void ListArr::insert_left(int v) {
-
+	root->addToTheLeft(v);
+	usedCapacity = root->getUsedCapacity();
+	fullCapacity = root->getFullCapacity();
 }
 
 void ListArr::insert_right(int v) {
@@ -28,7 +33,7 @@ void ListArr::insert(int v, int i) {
 }
 
 void ListArr::print() {
-
+	root->printEntireArray();
 }
 
 bool ListArr::find(int v) {

@@ -12,6 +12,14 @@ SummaryNode::SummaryNode() {
 }
 
 int SummaryNode::getUsedCapacity() {
+	return usedCapacity;
+}
+
+int SummaryNode::getFullCapacity() {
+	return fullCapacity;
+}
+
+void SummaryNode::updateUsedCapacity() {
 	int aux = 0;
 
 	// Si está en el nivel 1, obtiene la información directamente de los DataNodes
@@ -21,7 +29,6 @@ int SummaryNode::getUsedCapacity() {
 			aux += rightData->getUsedCapacity();
 		}
 	}
-
 	// Si está en otro nivel, significa que tiene punteros a SummaryNodes y llamará la función recursivamente
 	else {
 		aux += leftSummary->getUsedCapacity();
@@ -30,26 +37,18 @@ int SummaryNode::getUsedCapacity() {
 		}
 	}
 
-	return aux;
+	usedCapacity = aux;
 }
-
-int SummaryNode::getFullCapacity() {
-	return fullCapacity;
-}
-
 
 void SummaryNode::updateFullCapacity() {
 	int aux = 0;
 
-	// Si está en el nivel cero, significa que tiene punteros a DataNodes
 	if (isLevelOne()) {
 		aux += leftData->getFullCapacity();
 		if (rightData != nullptr) {
 			aux += rightData->getFullCapacity();
 		}
 	}
-
-	// Si está en otro nivel, significa que tiene punteros a SummaryNodes y llamará la función recursivamente
 	else {
 		aux += leftSummary->getFullCapacity();
 		if (rightSummary != nullptr) {
@@ -83,4 +82,26 @@ void SummaryNode::setRightSummary(SummaryNode* summaryAux) {
 bool SummaryNode::isLevelOne() {
 	// Si tiene un DataNode asociado a la izquierda, entonces estamos en el nivel 1 de los SummaryNodes
 	return leftData != nullptr;
+}
+
+void SummaryNode::addToTheLeft(int number) {
+	// Si está en nivel 1, pasa el número al DataNode de la izquierda para que lo maneje
+	if (isLevelOne()) {
+		leftData->addToTheLeft(number);
+		updateUsedCapacity();
+		updateFullCapacity();
+	}
+	// Si está en otro nivel, continúa bajando por los SummartNode de la izquierda hasta llegar al nivel 1
+	else {
+		leftSummary->addToTheLeft(number);
+	}
+}
+
+void SummaryNode::printEntireArray() {
+	if (isLevelOne()) {
+		leftData->printAllLinkedData();
+	}
+	else {
+		leftSummary->printEntireArray();
+	}
 }
