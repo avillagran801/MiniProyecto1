@@ -24,6 +24,7 @@ public:
 	void setRightSummary(SummaryNode* summaryAux);
 	bool isLevelOne();
 	void addToTheLeft(int number);
+	void addToTheRight(int number);
 	void printEntireArray();
 };
 

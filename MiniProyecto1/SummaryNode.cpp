@@ -97,6 +97,28 @@ void SummaryNode::addToTheLeft(int number) {
 	}
 }
 
+void SummaryNode::addToTheRight(int number){
+	int i = usedCapacity - 1;
+	//Esta siempre recorre hasta el nivel 1 y añade al final del último
+	if(isLevelOne()){
+		if (i < leftData->getUsedCapacity()) {
+			leftData[i] = number;
+		}
+		else {
+			if (rightData != nullptr) {
+				rightData[i] = number;
+			}
+			else {
+				//Acá va una función que crea un nuevo arreglo
+				//La cosa es que debe actualizar hacia arriba igual
+			}
+		}
+		updateUsedCapacity();
+	}
+	else {
+
+	}
+}
 void SummaryNode::printEntireArray() {
 	if (isLevelOne()) {
 		leftData->printAllLinkedData();
@@ -105,3 +127,4 @@ void SummaryNode::printEntireArray() {
 		leftSummary->printEntireArray();
 	}
 }
+
