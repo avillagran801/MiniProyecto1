@@ -22,6 +22,10 @@ public:
 	void setRightData(DataNode* dataAux);
 	void setLeftSummary(SummaryNode* summaryAux);
 	void setRightSummary(SummaryNode* summaryAux);
+	DataNode* getLeftData();
+	DataNode* getRightData();
+	SummaryNode* getLeftSummary();
+	SummaryNode* getRightSummary();
 	bool isLevelOne();
 	void addToTheLeft(int number);
 	void addToTheRight(int number);

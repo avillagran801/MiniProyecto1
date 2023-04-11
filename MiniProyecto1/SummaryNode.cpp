@@ -79,6 +79,22 @@ void SummaryNode::setRightSummary(SummaryNode* summaryAux) {
 	updateFullCapacity();
 }
 
+DataNode* SummaryNode::getLeftData() {
+	return leftData;
+}
+
+DataNode* SummaryNode::getRightData() {
+	return rightData;
+}
+
+SummaryNode* SummaryNode::getLeftSummary() {
+	return leftSummary;
+}
+
+SummaryNode* SummaryNode::getRightSummary() {
+	return rightSummary;
+}
+
 bool SummaryNode::isLevelOne() {
 	// Si tiene un DataNode asociado a la izquierda, entonces estamos en el nivel 1 de los SummaryNodes
 	return leftData != nullptr;

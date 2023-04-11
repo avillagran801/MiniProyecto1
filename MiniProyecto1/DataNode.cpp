@@ -37,6 +37,10 @@ void DataNode::addToTheLeft(int number) {
 	}
 }
 
+void DataNode::setNext(DataNode* auxNext) {
+	next = auxNext;
+}
+
 int DataNode::getFullCapacity() {
 	return fullCapacity;
 }

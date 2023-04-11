@@ -15,5 +15,8 @@ int main() {
 
 	listaPrueba.print();
 
+	listaPrueba.createNewDataNode(4);
+	listaPrueba.createNewDataNode(4);
+
 	return 0;
 }

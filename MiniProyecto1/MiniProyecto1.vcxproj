@@ -132,6 +132,7 @@
     <ClInclude Include="SummaryNode.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CodigoSinUsar.cpp" />
     <ClCompile Include="DataNode.cpp" />
     <ClCompile Include="ListArr.cpp" />
     <ClCompile Include="main.cpp" />
