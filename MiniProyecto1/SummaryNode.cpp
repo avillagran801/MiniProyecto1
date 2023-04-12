@@ -22,8 +22,8 @@ int SummaryNode::getFullCapacity() {
 void SummaryNode::updateUsedCapacity() {
 	int aux = 0;
 
-	// Si está en el nivel 1, obtiene la información directamente de los DataNodes
-	if (isLevelOne()) {
+	// Si está en el último nivel, obtiene la información directamente de los DataNodes
+	if (isLastLevel()) {
 		aux += leftData->getUsedCapacity();
 		if (rightData != nullptr) {
 			aux += rightData->getUsedCapacity();
@@ -33,7 +33,7 @@ void SummaryNode::updateUsedCapacity() {
 	else {
 		aux += leftSummary->getUsedCapacity();
 		if (rightSummary != nullptr) {
-			aux += rightData->getUsedCapacity();
+			aux += rightSummary->getUsedCapacity();
 		}
 	}
 
@@ -43,7 +43,7 @@ void SummaryNode::updateUsedCapacity() {
 void SummaryNode::updateFullCapacity() {
 	int aux = 0;
 
-	if (isLevelOne()) {
+	if (isLastLevel()) {
 		aux += leftData->getFullCapacity();
 		if (rightData != nullptr) {
 			aux += rightData->getFullCapacity();
@@ -52,7 +52,7 @@ void SummaryNode::updateFullCapacity() {
 	else {
 		aux += leftSummary->getFullCapacity();
 		if (rightSummary != nullptr) {
-			aux += rightData->getFullCapacity();
+			aux += rightSummary->getFullCapacity();
 		}
 	}
 
@@ -95,14 +95,14 @@ SummaryNode* SummaryNode::getRightSummary() {
 	return rightSummary;
 }
 
-bool SummaryNode::isLevelOne() {
+bool SummaryNode::isLastLevel() {
 	// Si tiene un DataNode asociado a la izquierda, entonces estamos en el nivel 1 de los SummaryNodes
 	return leftData != nullptr;
 }
 
 void SummaryNode::addToTheLeft(int number) {
 	// Si está en nivel 1, pasa el número al DataNode de la izquierda para que lo maneje
-	if (isLevelOne()) {
+	if (isLastLevel()) {
 		leftData->addToTheLeft(number);
 		updateUsedCapacity();
 		updateFullCapacity();
@@ -116,7 +116,7 @@ void SummaryNode::addToTheLeft(int number) {
 void SummaryNode::addToTheRight(int number){
 	int i = usedCapacity - 1;
 	//Esta siempre recorre hasta el nivel 1 y añade al final del último
-	if(isLevelOne()){
+	if(isLastLevel()){
 		if (i < leftData->getUsedCapacity()) {
 			leftData[i] = number;
 		}
@@ -136,7 +136,7 @@ void SummaryNode::addToTheRight(int number){
 	}
 }
 void SummaryNode::printEntireArray() {
-	if (isLevelOne()) {
+	if (isLastLevel()) {
 		leftData->printAllLinkedData();
 	}
 	else {

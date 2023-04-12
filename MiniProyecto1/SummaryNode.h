@@ -26,7 +26,7 @@ public:
 	DataNode* getRightData();
 	SummaryNode* getLeftSummary();
 	SummaryNode* getRightSummary();
-	bool isLevelOne();
+	bool isLastLevel();
 	void addToTheLeft(int number);
 	void addToTheRight(int number);
 	void printEntireArray();

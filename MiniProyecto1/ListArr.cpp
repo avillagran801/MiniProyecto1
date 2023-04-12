@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include "ListArr.h"
 #include "SummaryNode.h"
 #include "DataNode.h"
@@ -8,7 +9,9 @@ using namespace std;
 ListArr::ListArr(int arrayCapacity) {
 	root = new SummaryNode();
 	DataNode* aux = new DataNode(arrayCapacity);
+	firstData = aux;
 	root->setLeftData(aux);
+	numDataNodes = 1;
 
 	usedCapacity = root->getUsedCapacity();
 	fullCapacity = root->getFullCapacity();
@@ -40,47 +43,59 @@ bool ListArr::find(int v) {
 	return true; // Sólo para que no tirara error
 }
 
-void ListArr::createNewDataNode(int cap) {
-	// OJO: ESTE MÉTODO SE LLAMA A PARTIR DE ROOT
-	// NO UNE AÚN EL ÚLTIMO DATANODE CON EL QUE SE AGREGA AQUÍ
+void ListArr::setNumDataNodes(int num) {
+	numDataNodes = num;
+}
 
-	DataNode* newDataNode = new DataNode(cap);
-	SummaryNode* auxRoot = root;
-	SummaryNode* currentNode = root;
-	SummaryNode* lastAvailableRight = nullptr;
-	int addDirectly = 0;
-	int lastSaved = 0;
+int ListArr::findHeight() {
+	int height = 1;
+	
+	while (pow(2, height) < numDataNodes) {
+		height++;
+	}
+	cout << "CANTIDAD DE DATANODES: " << numDataNodes << endl;
+	cout << "ALTURA DEL ARBOL: " << height << endl;
+	return height;
+}
 
-	while (currentNode != nullptr) {
-		if (currentNode->isLevelOne()) {
-			// Si estamos en el último nivel y está disponible el espacio a la derecha, se activa la bandera de addDirectly
-			if (currentNode->getRightData() == nullptr) {
-				addDirectly = 1;
-				break;
-			}
-			break;
-			// Si no está disponible el espacio a la derecha, debemos crear uno o más SummaryNodes
+// SOLUCIONAR PROBLEMA PARA ACTUALIZAR DATA CUANDO SE REALIZA RECURSIVIDAD
+void ListArr::generateTree(SummaryNode* summary, int level, DataNode* data) {
+	cout << endl << "NIVEL ACTUAL: " << level << endl;
+	cout << "DATANODE ACTUAL: " << data << endl;
+	
+	if (level == maxLevel) {
+		summary->setLeftData(data);
+		data = data->getNext();
+		cout << "DATANODE ACTUALIZADO: " << data << endl;
+
+		if (data == nullptr) {
+			cout << "ULTIMO A LA IZQUIERDA" << endl;
+			return;
 		}
 
-		else {
-			 // Si queda camino por la derecha, continuamos
-			if (currentNode->getRightSummary() != nullptr) {
-				currentNode = currentNode->getRightSummary();
-			}
-			// Si no queda camino por la derecha, lo marcamos como último nodo con espacio libre
-			else {
-				lastAvailableRight = currentNode;
-				currentNode = currentNode->getLeftSummary();
-			}
+		summary->setRightData(data);
+		data = data->getNext();
+
+		if (data == nullptr) {
+			cout << "ULTIMO A LA DERECHA!" << endl;
+			return;
 		}
 	}
+	else {
+		SummaryNode* sumAuxL = new SummaryNode();
+		summary->setLeftSummary(sumAuxL);
+		generateTree(summary->getLeftSummary(), level + 1, data);
 
-	if (addDirectly) {
-		cout << "AGREGAMOS DIRECTAMENTE! \n";
-		currentNode->setRightData(newDataNode);
+		SummaryNode* sumAuxR = new SummaryNode();
+		summary->setRightSummary(sumAuxR);
+		generateTree(summary->getRightSummary(), level + 1, data);
 	}
-	else{
-		cout << "HAY QUE AGREGAR NODOS! \n";
-	}
+}
 
+void ListArr::update() {
+	maxLevel = findHeight();
+	DataNode* currentDataNode = firstData;
+	SummaryNode* newRoot = new SummaryNode();
+	generateTree(newRoot, 1, currentDataNode);
+	root = newRoot;
 }

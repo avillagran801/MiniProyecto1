@@ -5,18 +5,25 @@ using namespace std;
 
 int main() {
 	ListArr listaPrueba = ListArr(4);
-	cout << "CANTIDAD TOTAL DE DATOS INGRESADOS: " << listaPrueba.size() << endl;
 
-	// Agregamos 20 números de prueba
-	for (int i = 0; i < 20; i++) {
+	int numDatosPrueba = 9;
+
+	for (int i = 0; i < numDatosPrueba; i++) {
 		listaPrueba.insert_left(i+1);
 	}
+
+	if (numDatosPrueba % 4 == 0) {
+		listaPrueba.setNumDataNodes(numDatosPrueba / 4);
+	}
+	else {
+		listaPrueba.setNumDataNodes(numDatosPrueba / 4 + 1);
+	}
+
 	cout << "CANTIDAD TOTAL DE DATOS INGRESADOS: "  << listaPrueba.size() << endl;
 
 	listaPrueba.print();
 
-	listaPrueba.createNewDataNode(4);
-	listaPrueba.createNewDataNode(4);
+	listaPrueba.update();
 
 	return 0;
 }

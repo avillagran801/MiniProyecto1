@@ -7,6 +7,9 @@ private:
 	SummaryNode* root;
 	int fullCapacity;
 	int usedCapacity;
+	DataNode* firstData;
+	int numDataNodes;
+	int maxLevel;
 
 public:
 	ListArr(int arrayCapacity);
@@ -16,5 +19,8 @@ public:
 	void insert(int v, int i); // Inserta un nuevo valor v en el índice i del ListArr
 	void print(); // Imprime por pantalla todos los valores almacenados en el ListArr
 	bool find(int v); // Busca en el ListArr si el valor v se encuentra almacenado
-	void createNewDataNode(int cap);
+	void setNumDataNodes(int num);
+	int findHeight();
+	void generateTree(SummaryNode* sum, int level, DataNode* data);
+	void update();
 };

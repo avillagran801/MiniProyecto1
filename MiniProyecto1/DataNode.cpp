@@ -41,6 +41,10 @@ void DataNode::setNext(DataNode* auxNext) {
 	next = auxNext;
 }
 
+DataNode* DataNode::getNext() {
+	return next;
+}
+
 int DataNode::getFullCapacity() {
 	return fullCapacity;
 }
