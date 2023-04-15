@@ -20,8 +20,7 @@ public:
 	void insert(int v, int i); // Inserta un nuevo valor v en el índice i del ListArr
 	void print(); // Imprime por pantalla todos los valores almacenados en el ListArr
 	bool find(int v); // Busca en el ListArr si el valor v se encuentra almacenado
-	void setNumDataNodes(int num);
 	int findHeight();
 	void generateTree(SummaryNode* sum, int level);
-	void update();
+	void updateTree();
 };

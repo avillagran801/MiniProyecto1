@@ -18,6 +18,7 @@ public:
 	int getFullCapacity();
 	void updateUsedCapacity();
 	void updateFullCapacity();
+	int getNumDataNodes();
 	void setLeftData(DataNode* dataAux);
 	void setRightData(DataNode* dataAux);
 	void setLeftSummary(SummaryNode* summaryAux);

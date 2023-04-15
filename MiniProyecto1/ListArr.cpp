@@ -12,9 +12,6 @@ ListArr::ListArr(int arrayCapacity) {
 	firstData = aux;
 	root->setLeftData(aux);
 	numDataNodes = 1;
-
-	// usedCapacity = root->getUsedCapacity();
-	// fullCapacity = root->getFullCapacity();
 }
 
 int ListArr::size() {
@@ -23,10 +20,15 @@ int ListArr::size() {
 
 void ListArr::insert_left(int v) {
 	root->addToTheLeft(v);
+
+	// Si la cantidad de nodos al agregar un elemento a la izquierda se ve alterada, actualizamos el árbol
+	cout << "REVISA LA CANTIDAD DE DATANODES: " << endl;
+	if (numDataNodes != root->getNumDataNodes()) {
+		cout << "UPDATEA EL ARBOL: " << endl;
+		updateTree();
+	}
+	root->updateFullCapacity();
 	root->updateUsedCapacity();
-	root->updateUsedCapacity();
-	// usedCapacity = root->getUsedCapacity();
-	// fullCapacity = root->getFullCapacity();
 }
 
 void ListArr::insert_right(int v) {
@@ -45,10 +47,6 @@ bool ListArr::find(int v) {
 	return true; // Sólo para que no tirara error
 }
 
-void ListArr::setNumDataNodes(int num) {
-	numDataNodes = num;
-}
-
 int ListArr::findHeight() {
 	int height = 1;
 	
@@ -61,26 +59,18 @@ int ListArr::findHeight() {
 }
 
 void ListArr::generateTree(SummaryNode* summary, int level) {
-	cout << endl << "NIVEL ACTUAL: " << level << endl;
-	cout << "DATANODE ACTUAL: " << auxDataNode << endl;
-	
 	if (level == maxLevel) {
 		summary->setLeftData(auxDataNode);
 		auxDataNode = auxDataNode->getNext();
-		cout << "DATANODE ACTUALIZADO: " << auxDataNode << endl;
 
 		if (auxDataNode == nullptr) {
-			cout << "ULTIMO A LA IZQUIERDA" << endl;
 			return;
 		}
 
 		summary->setRightData(auxDataNode);
 		auxDataNode = auxDataNode->getNext();
 
-		cout << "DATANODE ACTUALIZADO: " << auxDataNode << endl;
-
 		if (auxDataNode == nullptr) {
-			cout << "ULTIMO A LA DERECHA!" << endl;
 			return;
 		}
 	}
@@ -95,14 +85,11 @@ void ListArr::generateTree(SummaryNode* summary, int level) {
 	}
 }
 
-void ListArr::update() {
+void ListArr::updateTree() {
+	numDataNodes = root->getNumDataNodes();
 	maxLevel = findHeight();
 	auxDataNode = firstData;
 	SummaryNode* newRoot = new SummaryNode();
 	generateTree(newRoot, 1);
-	newRoot->updateFullCapacity();
-	newRoot->updateUsedCapacity();
 	root = newRoot;
-
-	cout << root->getUsedCapacity() << " DE " << root->getFullCapacity() << " ESPACIOS" << endl;
 }
