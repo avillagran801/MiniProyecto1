@@ -12,6 +12,7 @@ ListArr::ListArr(int arrayCapacity) {
 	firstData = aux;
 	root->setLeftData(aux);
 	numDataNodes = 1;
+	maxLevel = 1;
 }
 
 int ListArr::size() {
@@ -22,9 +23,7 @@ void ListArr::insert_left(int v) {
 	root->addToTheLeft(v);
 
 	// Si la cantidad de nodos al agregar un elemento a la izquierda se ve alterada, actualizamos el árbol
-	cout << "REVISA LA CANTIDAD DE DATANODES: " << endl;
 	if (numDataNodes != root->getNumDataNodes()) {
-		cout << "UPDATEA EL ARBOL: " << endl;
 		updateTree();
 	}
 	root->updateFullCapacity();
@@ -40,6 +39,10 @@ void ListArr::insert(int v, int i) {
 }
 
 void ListArr::print() {
+	cout << "NUMERO DE DATOS INGRESADOS: " << size() << endl;
+	cout << "NUMERO DE DATA NODES: " << root->getNumDataNodes() << endl;
+	cout << "NUMERO DE NIVELES EN EL ARBOL: " << maxLevel << endl << endl;
+
 	root->printEntireArray();
 }
 
@@ -53,8 +56,6 @@ int ListArr::findHeight() {
 	while (pow(2, height) < numDataNodes) {
 		height++;
 	}
-	cout << "CANTIDAD DE DATANODES: " << numDataNodes << endl;
-	cout << "ALTURA DEL ARBOL: " << height << endl;
 	return height;
 }
 

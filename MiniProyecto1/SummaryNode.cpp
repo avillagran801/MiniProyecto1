@@ -12,10 +12,12 @@ SummaryNode::SummaryNode() {
 }
 
 int SummaryNode::getUsedCapacity() {
+	updateUsedCapacity();
 	return usedCapacity;
 }
 
 int SummaryNode::getFullCapacity() {
+	updateFullCapacity();
 	return fullCapacity;
 }
 
@@ -64,11 +66,9 @@ int SummaryNode::getNumDataNodes() {
 
 	if (isLastLevel()) {
 		DataNode* auxData = leftData;
-		cout << auxData << endl;
 		while (auxData != nullptr) {
 			aux++;
 			auxData = auxData->getNext();
-			cout << auxData << endl;
 		}
 		return aux;
 	}
@@ -80,22 +80,18 @@ int SummaryNode::getNumDataNodes() {
 
 void SummaryNode::setLeftData(DataNode* dataAux) {
 	leftData = dataAux;
-	// updateFullCapacity();
 }
 
 void SummaryNode::setRightData(DataNode* dataAux) {
 	rightData = dataAux;
-	// updateFullCapacity();
 }
 
 void SummaryNode::setLeftSummary(SummaryNode* summaryAux) {
 	leftSummary = summaryAux;
-	// updateFullCapacity();
 }
 
 void SummaryNode::setRightSummary(SummaryNode* summaryAux) {
 	rightSummary = summaryAux;
-	// updateFullCapacity();
 }
 
 DataNode* SummaryNode::getLeftData() {
@@ -123,8 +119,6 @@ void SummaryNode::addToTheLeft(int number) {
 	// Si está en nivel 1, pasa el número al DataNode de la izquierda para que lo maneje
 	if (isLastLevel()) {
 		leftData->addToTheLeft(number);
-		// updateUsedCapacity();
-		// updateFullCapacity();
 	}
 	// Si está en otro nivel, continúa bajando por los SummartNode de la izquierda hasta llegar al nivel 1
 	else {
@@ -148,7 +142,6 @@ void SummaryNode::addToTheRight(int number){
 				//La cosa es que debe actualizar hacia arriba igual
 			}
 		}
-		// updateUsedCapacity();
 	}
 	else {
 

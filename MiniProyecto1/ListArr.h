@@ -5,8 +5,6 @@ using namespace std;
 class ListArr{
 private:
 	SummaryNode* root;
-	// int fullCapacity;
-	// int usedCapacity;
 	DataNode* firstData;
 	DataNode* auxDataNode;
 	int numDataNodes;

@@ -6,15 +6,17 @@ using namespace std;
 int main() {
 	ListArr listaPrueba = ListArr(4);
 
+	cout << "*** ANTES DE INGRESAR LOS DATOS ***" << endl << endl;
+	listaPrueba.print();
+
 	int numDatosPrueba = 13;
 
 	for (int i = 0; i < numDatosPrueba; i++) {
-		cout << "ITERACION " << i << ":" << endl << endl;
 		listaPrueba.insert_left(i+1);
-		cout << endl;
 	}
 
-	cout << "CANTIDAD DE DATOS GUARDADOS: " << listaPrueba.size() << endl;
+	cout << "*** DESPUES DE INGRESAR LOS DATOS ***" << endl << endl;
+	listaPrueba.print();
 
 	return 0;
 }
