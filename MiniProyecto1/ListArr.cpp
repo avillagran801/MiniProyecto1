@@ -13,8 +13,8 @@ ListArr::ListArr(int arrayCapacity) {
 	root->setLeftData(aux);
 	numDataNodes = 1;
 
-	usedCapacity = root->getUsedCapacity();
-	fullCapacity = root->getFullCapacity();
+	// usedCapacity = root->getUsedCapacity();
+	// fullCapacity = root->getFullCapacity();
 }
 
 int ListArr::size() {
@@ -23,8 +23,10 @@ int ListArr::size() {
 
 void ListArr::insert_left(int v) {
 	root->addToTheLeft(v);
-	usedCapacity = root->getUsedCapacity();
-	fullCapacity = root->getFullCapacity();
+	root->updateUsedCapacity();
+	root->updateUsedCapacity();
+	// usedCapacity = root->getUsedCapacity();
+	// fullCapacity = root->getFullCapacity();
 }
 
 void ListArr::insert_right(int v) {
@@ -58,25 +60,26 @@ int ListArr::findHeight() {
 	return height;
 }
 
-// SOLUCIONAR PROBLEMA PARA ACTUALIZAR DATA CUANDO SE REALIZA RECURSIVIDAD
-void ListArr::generateTree(SummaryNode* summary, int level, DataNode* data) {
+void ListArr::generateTree(SummaryNode* summary, int level) {
 	cout << endl << "NIVEL ACTUAL: " << level << endl;
-	cout << "DATANODE ACTUAL: " << data << endl;
+	cout << "DATANODE ACTUAL: " << auxDataNode << endl;
 	
 	if (level == maxLevel) {
-		summary->setLeftData(data);
-		data = data->getNext();
-		cout << "DATANODE ACTUALIZADO: " << data << endl;
+		summary->setLeftData(auxDataNode);
+		auxDataNode = auxDataNode->getNext();
+		cout << "DATANODE ACTUALIZADO: " << auxDataNode << endl;
 
-		if (data == nullptr) {
+		if (auxDataNode == nullptr) {
 			cout << "ULTIMO A LA IZQUIERDA" << endl;
 			return;
 		}
 
-		summary->setRightData(data);
-		data = data->getNext();
+		summary->setRightData(auxDataNode);
+		auxDataNode = auxDataNode->getNext();
 
-		if (data == nullptr) {
+		cout << "DATANODE ACTUALIZADO: " << auxDataNode << endl;
+
+		if (auxDataNode == nullptr) {
 			cout << "ULTIMO A LA DERECHA!" << endl;
 			return;
 		}
@@ -84,18 +87,22 @@ void ListArr::generateTree(SummaryNode* summary, int level, DataNode* data) {
 	else {
 		SummaryNode* sumAuxL = new SummaryNode();
 		summary->setLeftSummary(sumAuxL);
-		generateTree(summary->getLeftSummary(), level + 1, data);
+		generateTree(summary->getLeftSummary(), level + 1);
 
 		SummaryNode* sumAuxR = new SummaryNode();
 		summary->setRightSummary(sumAuxR);
-		generateTree(summary->getRightSummary(), level + 1, data);
+		generateTree(summary->getRightSummary(), level + 1);
 	}
 }
 
 void ListArr::update() {
 	maxLevel = findHeight();
-	DataNode* currentDataNode = firstData;
+	auxDataNode = firstData;
 	SummaryNode* newRoot = new SummaryNode();
-	generateTree(newRoot, 1, currentDataNode);
+	generateTree(newRoot, 1);
+	newRoot->updateFullCapacity();
+	newRoot->updateUsedCapacity();
 	root = newRoot;
+
+	cout << root->getUsedCapacity() << " DE " << root->getFullCapacity() << " ESPACIOS" << endl;
 }

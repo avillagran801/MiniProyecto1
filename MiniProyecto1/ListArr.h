@@ -5,9 +5,10 @@ using namespace std;
 class ListArr{
 private:
 	SummaryNode* root;
-	int fullCapacity;
-	int usedCapacity;
+	// int fullCapacity;
+	// int usedCapacity;
 	DataNode* firstData;
+	DataNode* auxDataNode;
 	int numDataNodes;
 	int maxLevel;
 
@@ -21,6 +22,6 @@ public:
 	bool find(int v); // Busca en el ListArr si el valor v se encuentra almacenado
 	void setNumDataNodes(int num);
 	int findHeight();
-	void generateTree(SummaryNode* sum, int level, DataNode* data);
+	void generateTree(SummaryNode* sum, int level);
 	void update();
 };
