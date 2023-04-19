@@ -21,4 +21,5 @@ public:
 	int findHeight();
 	void generateTree(SummaryNode* sum, int level);
 	void updateTree();
+	SummaryNode* getRoot();
 };

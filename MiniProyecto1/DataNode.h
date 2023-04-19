@@ -11,6 +11,7 @@ private:
 public:
 	DataNode(int capacity);
 	void addToTheLeft(int number);
+	void add(int number, int pos);
 	void setNext(DataNode* auxNext);
 	DataNode* getNext();
 	int getFullCapacity();

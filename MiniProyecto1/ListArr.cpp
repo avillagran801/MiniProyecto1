@@ -31,11 +31,21 @@ void ListArr::insert_left(int v) {
 }
 
 void ListArr::insert_right(int v) {
-
+	root->addToTheRight(v);
+	if (numDataNodes != root->getNumDataNodes()) {
+		updateTree();
+	}
+	root->updateFullCapacity();
+	root->updateUsedCapacity();
 }
 
-void ListArr::insert(int v, int i) {
-
+void ListArr::insert(int v, int i) { //V = número, i = posición
+	root->add(v, i);
+	if (numDataNodes != root->getNumDataNodes()) {
+		updateTree();
+	}
+	root->updateFullCapacity();
+	root->updateUsedCapacity();
 }
 
 void ListArr::print() {
@@ -93,4 +103,8 @@ void ListArr::updateTree() {
 	SummaryNode* newRoot = new SummaryNode();
 	generateTree(newRoot, 1);
 	root = newRoot;
+}
+
+SummaryNode* ListArr::getRoot() {
+	return root;
 }

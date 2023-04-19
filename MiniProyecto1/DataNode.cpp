@@ -25,9 +25,17 @@ void DataNode::addToTheLeft(int number) {
 		}
 		// Si ya está lleno el arreglo, enviamos el último número a next y movemos todo 1 espacio a la derecha
 		else {
-			if (next == nullptr) {
+			if (next == nullptr) { //Si no existe el siguiente nodo, se crea
 				next = new DataNode(fullCapacity);
 			}
+			
+			if (next->getUsedCapacity() == fullCapacity) { //Si el siguiente nodo está lleno, se mueve el dato sobrante a un nuevo nodo entre el actual y el siguiente
+				DataNode* aux = next;
+				DataNode* nuevo = new DataNode(fullCapacity);
+				nuevo->next = aux;
+				next = nuevo;
+			}
+			
 			next->addToTheLeft(data[fullCapacity - 1]);
 			for (int i = 0; i < fullCapacity; i++) {
 				data[fullCapacity - i] = data[fullCapacity - i - 1];
@@ -35,6 +43,14 @@ void DataNode::addToTheLeft(int number) {
 		}
 		data[0] = number;
 	}
+}
+
+void DataNode::add(int number, int pos) {
+	for (int i = pos-1; i < usedCapacity; i++) {
+		data[usedCapacity - i] = data[usedCapacity - i - 1];
+	}
+	usedCapacity++;	
+	data[pos-1] = number;
 }
 
 void DataNode::setNext(DataNode* auxNext) {

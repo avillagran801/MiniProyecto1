@@ -30,6 +30,7 @@ public:
 	bool isLastLevel();
 	void addToTheLeft(int number);
 	void addToTheRight(int number);
+	void add(int number, int pos);
 	void printEntireArray();
 };
 

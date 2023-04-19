@@ -127,26 +127,47 @@ void SummaryNode::addToTheLeft(int number) {
 }
 
 void SummaryNode::addToTheRight(int number){
-	int i = usedCapacity - 1;
-	//Esta siempre recorre hasta el nivel 1 y añade al final del último
-	if(isLastLevel()){
-		if (i < leftData->getUsedCapacity()) {
-			leftData[i] = number;
+	this->add(number, usedCapacity+1);
+}
+
+void SummaryNode::add(int number, int pos) {
+	//Se considera que el primer elemento lleva la posición 1.
+	if (isLastLevel()) { //Se está en el último nivel, se revisan los Datanodes
+		//Mismo procedimiento que para los SummaryNodes, esta vez se añade directamente al encontrar el adecuado
+		if (leftData->getUsedCapacity() != leftData->getFullCapacity()) {
+			leftData->add(number, pos);
+		}
+		else if (rightData == nullptr) {
+			rightData = new DataNode(leftData->getFullCapacity());
+			leftData->setNext(rightData);
+			rightData->add(number, pos - leftData->getFullCapacity());
+		
+		}
+		else if(rightData->getUsedCapacity() == rightData->getFullCapacity()){
+			DataNode* nuevo = new DataNode(rightData->getFullCapacity());
+			rightData->setNext(nuevo);
+			nuevo->add(number, pos-rightData->getFullCapacity()*2);
+		}
+		else{
+			rightData->add(number, pos-leftData->getFullCapacity());
+		}
+	}else { //No está en el último nivel, se revisan los SummaryNodes
+		if (pos > usedCapacity+1|| pos < 1) {
+			cout << "Error: Posición inexistente.";
+			return;
+		}
+		//Se revisa si la posición existe a la izquierda
+		if (leftSummary->getUsedCapacity() > pos-1) {
+			//Si la posición existe, se hace recursión por ese lado
+			leftSummary->add(number, pos);
 		}
 		else {
-			if (rightData != nullptr) {
-				rightData[i] = number;
-			}
-			else {
-				//Acá va una función que crea un nuevo arreglo
-				//La cosa es que debe actualizar hacia arriba igual
-			}
+			//De cualquier otra forma se va por la derecha
+			rightSummary->add(number, pos - leftSummary->getFullCapacity());
 		}
 	}
-	else {
-
-	}
 }
+
 void SummaryNode::printEntireArray() {
 	if (isLastLevel()) {
 		leftData->printAllLinkedData();
