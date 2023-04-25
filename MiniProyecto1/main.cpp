@@ -34,7 +34,7 @@ int main() {
 	cout << "---INGRESO DE DATOS EN UNA POSICION NO EXTREMA---" << endl;
 
 	for (int i = 1; i < numDatosPrueba; ++i) {
-		listaPrueba.insert(10 * i, 4);
+		listaPrueba.insert(10*i, 4);
 	}
 
 	cout << "***DESPUES DEL TERCER INGRESO DE DATOS***" << endl << endl;

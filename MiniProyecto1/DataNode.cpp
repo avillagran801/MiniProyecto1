@@ -46,11 +46,42 @@ void DataNode::addToTheLeft(int number) {
 }
 
 void DataNode::add(int number, int pos) {
-	for (int i = pos-1; i < usedCapacity; i++) {
-		data[usedCapacity - i] = data[usedCapacity - i - 1];
+	if (pos <= fullCapacity) {
+		if (usedCapacity + 1 <= fullCapacity) {
+			for (int i = pos - 1; i < usedCapacity; i++) {
+				data[usedCapacity - i] = data[usedCapacity - i - 1];
+			}
+			usedCapacity++;
+		}
+		else {
+			if (next == nullptr) {
+				next = new DataNode(fullCapacity);
+			}
+			if (next->getFullCapacity() == fullCapacity) {
+				DataNode* aux = next;
+				DataNode* nuevo = new DataNode(fullCapacity);
+				nuevo->next = aux;
+				next = nuevo;
+			}
+			next->addToTheLeft(data[fullCapacity - 1]);
+			for (int i = 0; i < pos - 2; i++) {
+				data[fullCapacity - i] = data[fullCapacity - i - 1];
+			}
+		}
+		data[pos - 1] = number;
 	}
-	usedCapacity++;	
-	data[pos-1] = number;
+	if (pos == fullCapacity + 1) {
+		if (next == nullptr) {
+			next = new DataNode(fullCapacity);
+		}
+		if (next->getFullCapacity() == fullCapacity) {
+			DataNode* aux = next;
+			DataNode* nuevo = new DataNode(fullCapacity);
+			nuevo->next = aux;
+			next = nuevo;
+		}
+		next->addToTheLeft(number);
+	}
 }
 
 void DataNode::setNext(DataNode* auxNext) {

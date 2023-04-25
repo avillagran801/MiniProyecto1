@@ -33,7 +33,7 @@ void SummaryNode::updateUsedCapacity() {
 	}
 	// Si está en otro nivel, significa que tiene punteros a SummaryNodes y llamará la función recursivamente
 	else {
-		aux += leftSummary->getUsedCapacity();
+		if(leftSummary != nullptr) aux += leftSummary->getUsedCapacity();
 		if (rightSummary != nullptr) {
 			aux += rightSummary->getUsedCapacity();
 		}
@@ -52,7 +52,7 @@ void SummaryNode::updateFullCapacity() {
 		}
 	}
 	else {
-		aux += leftSummary->getFullCapacity();
+		if(leftSummary != nullptr) aux += leftSummary->getFullCapacity();
 		if (rightSummary != nullptr) {
 			aux += rightSummary->getFullCapacity();
 		}
@@ -127,43 +127,43 @@ void SummaryNode::addToTheLeft(int number) {
 }
 
 void SummaryNode::addToTheRight(int number){
-	this->add(number, usedCapacity+1);
+	this->add(number, usedCapacity + 1);
 }
 
 void SummaryNode::add(int number, int pos) {
 	//Se considera que el primer elemento lleva la posición 1.
-	if (isLastLevel()) { //Se está en el último nivel, se revisan los Datanodes
-		//Mismo procedimiento que para los SummaryNodes, esta vez se añade directamente al encontrar el adecuado
-		if (leftData->getUsedCapacity() != leftData->getFullCapacity()) {
+	if(isLastLevel()){
+		if (leftData->getUsedCapacity() > pos - 1) {
 			leftData->add(number, pos);
 		}
-		else if (rightData == nullptr) {
-			rightData = new DataNode(leftData->getFullCapacity());
-			leftData->setNext(rightData);
-			rightData->add(number, pos - leftData->getFullCapacity());
+		else {
+			if (rightData == nullptr) {
+				DataNode* aux = leftData->getNext();
+				rightData = new DataNode(leftData->getFullCapacity());
+				leftData->setNext(rightData);
+				rightData->add(number, pos - leftData->getUsedCapacity());
+				rightData->setNext(aux);
+			}
+			else {
+				rightData->add(number, pos - leftData->getUsedCapacity());
+			}
+
+		}
 		
-		}
-		else if(rightData->getUsedCapacity() == rightData->getFullCapacity()){
-			DataNode* nuevo = new DataNode(rightData->getFullCapacity());
-			rightData->setNext(nuevo);
-			nuevo->add(number, pos-rightData->getFullCapacity()*2);
-		}
-		else{
-			rightData->add(number, pos-leftData->getFullCapacity());
-		}
+	
 	}else { //No está en el último nivel, se revisan los SummaryNodes
 		if (pos > usedCapacity+1|| pos < 1) {
 			cout << "Error: Posición inexistente.";
 			return;
 		}
 		//Se revisa si la posición existe a la izquierda
-		if (leftSummary->getUsedCapacity() > pos-1) {
+		if (leftSummary->getUsedCapacity() > pos - 1) {
 			//Si la posición existe, se hace recursión por ese lado
 			leftSummary->add(number, pos);
 		}
 		else {
 			//De cualquier otra forma se va por la derecha
-			rightSummary->add(number, pos - leftSummary->getFullCapacity());
+			rightSummary->add(number, pos - leftSummary->getUsedCapacity());
 		}
 	}
 }

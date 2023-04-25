@@ -13,6 +13,7 @@ ListArr::ListArr(int arrayCapacity) {
 	root->setLeftData(aux);
 	numDataNodes = 1;
 	maxLevel = 1;
+	auxDataNode = nullptr;
 }
 
 int ListArr::size() {
@@ -70,16 +71,23 @@ int ListArr::findHeight() {
 }
 
 void ListArr::generateTree(SummaryNode* summary, int level) {
+	cout << "Nivel actual: " << level << endl;
+	cout << "Data node inicio: " << auxDataNode << endl;
+	
 	if (level == maxLevel) {
 		summary->setLeftData(auxDataNode);
-		auxDataNode = auxDataNode->getNext();
+		if(auxDataNode != nullptr) auxDataNode = auxDataNode->getNext();
+
+		cout << "Data node siguiente: " << auxDataNode << endl;
 
 		if (auxDataNode == nullptr) {
 			return;
 		}
 
 		summary->setRightData(auxDataNode);
-		auxDataNode = auxDataNode->getNext();
+		if(auxDataNode != nullptr) auxDataNode = auxDataNode->getNext();
+
+		cout << "Data node siguiente: " << auxDataNode << endl;
 
 		if (auxDataNode == nullptr) {
 			return;
