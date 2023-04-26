@@ -74,7 +74,7 @@ void DataNode::add(int number, int pos) {
 		if (next == nullptr) {
 			next = new DataNode(fullCapacity);
 		}
-		if (next->getFullCapacity() == fullCapacity) {
+		if (next->getUsedCapacity() == fullCapacity) {
 			DataNode* aux = next;
 			DataNode* nuevo = new DataNode(fullCapacity);
 			nuevo->next = aux;

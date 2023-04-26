@@ -147,9 +147,7 @@ void SummaryNode::add(int number, int pos) {
 			else {
 				rightData->add(number, pos - leftData->getUsedCapacity());
 			}
-
-		}
-		
+		}	
 	
 	}else { //No está en el último nivel, se revisan los SummaryNodes
 		if (pos > usedCapacity+1|| pos < 1) {
