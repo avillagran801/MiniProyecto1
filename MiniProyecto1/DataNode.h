@@ -14,6 +14,7 @@ public:
 	void add(int number, int pos);
 	void setNext(DataNode* auxNext);
 	DataNode* getNext();
+	int* getData();
 	int getFullCapacity();
 	int getUsedCapacity();
 	void printAllLinkedData();

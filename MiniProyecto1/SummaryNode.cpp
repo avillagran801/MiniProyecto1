@@ -154,8 +154,8 @@ void SummaryNode::add(int number, int pos) {
 			cout << "Error: Posición inexistente.";
 			return;
 		}
-		//Se revisa si la posición existe a la izquierda
-		if (leftSummary->getUsedCapacity() > pos - 1) {
+		//Se revisa si la posición existe a la izquierdaS
+		if (leftSummary->getUsedCapacity() >= pos - 1) {
 			//Si la posición existe, se hace recursión por ese lado
 			leftSummary->add(number, pos);
 		}

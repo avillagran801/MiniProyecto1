@@ -48,10 +48,10 @@ void DataNode::addToTheLeft(int number) {
 void DataNode::add(int number, int pos) {
 	if (pos <= fullCapacity) {
 		if (usedCapacity + 1 <= fullCapacity) {
-			for (int i = pos - 1; i < usedCapacity; i++) {
-				data[usedCapacity - i] = data[usedCapacity - i - 1];
-			}
-			usedCapacity++;
+				for (int i = 0; i <=  fullCapacity - pos; i++) {
+					data[fullCapacity - i] = data[fullCapacity - i - 1];
+				}
+				usedCapacity++;
 		}
 		else {
 			if (next == nullptr) {
@@ -64,7 +64,7 @@ void DataNode::add(int number, int pos) {
 				next = nuevo;
 			}
 			next->addToTheLeft(data[fullCapacity - 1]);
-			for (int i = 0; i < pos - 2; i++) {
+			for (int i = 0; i <= fullCapacity - pos; i++) {
 				data[fullCapacity - i] = data[fullCapacity - i - 1];
 			}
 		}
@@ -111,4 +111,8 @@ void DataNode::printAllLinkedData() {
 		next->printAllLinkedData();
 	}
 	cout << endl;
+}
+
+int* DataNode::getData() {
+	return data;
 }
