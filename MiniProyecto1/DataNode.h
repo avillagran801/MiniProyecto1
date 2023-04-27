@@ -13,6 +13,7 @@ public:
 	void addToTheLeft(int number);
 	void add(int number, int pos);
 	void setNext(DataNode* auxNext);
+	bool findNumber(int number);
 	DataNode* getNext();
 	int* getData();
 	int getFullCapacity();

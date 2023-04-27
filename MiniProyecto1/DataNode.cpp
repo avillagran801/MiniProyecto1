@@ -88,6 +88,22 @@ void DataNode::setNext(DataNode* auxNext) {
 	next = auxNext;
 }
 
+bool DataNode::findNumber(int number) {
+	for (int i = 0; i < fullCapacity; i++) {
+		if (data[i] == number) {
+			return true;
+			break;
+		}
+	}
+
+	if (next == nullptr) {
+		return false;
+	}
+	else {
+		next->findNumber(number);
+	}
+}
+
 DataNode* DataNode::getNext() {
 	return next;
 }
@@ -110,7 +126,7 @@ void DataNode::printAllLinkedData() {
 		cout << endl;
 		next->printAllLinkedData();
 	}
-	cout << endl;
+	// cout << endl;
 }
 
 int* DataNode::getData() {

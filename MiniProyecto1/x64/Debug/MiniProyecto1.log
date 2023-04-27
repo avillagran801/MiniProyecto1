@@ -1,2 +1,4 @@
-﻿  ListArr.cpp
-  MiniProyecto1.vcxproj -> C:\Users\aceb3\Documents\GitHub\MiniProyecto1\MiniProyecto1\x64\Debug\MiniProyecto1.exe
+﻿  main.cpp
+C:\Users\anii-\Desktop\Estructuras de datos\avillagran801\MiniProyecto1\MiniProyecto1\main.cpp(7,32): warning C4244: 'argumento': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\anii-\Desktop\Estructuras de datos\avillagran801\MiniProyecto1\MiniProyecto1\main.cpp(27,27): warning C4244: 'argumento': conversión de 'double' a 'int'; posible pérdida de datos
+  MiniProyecto1.vcxproj -> C:\Users\anii-\Desktop\Estructuras de datos\avillagran801\MiniProyecto1\MiniProyecto1\x64\Debug\MiniProyecto1.exe

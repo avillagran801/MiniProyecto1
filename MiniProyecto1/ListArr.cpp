@@ -55,10 +55,11 @@ void ListArr::print() {
 	cout << "NUMERO DE NIVELES EN EL ARBOL: " << maxLevel << endl << endl;
 
 	root->printEntireArray();
+	cout << endl;
 }
 
 bool ListArr::find(int v) {
-	return true; // Sólo para que no tirara error
+	return firstData->findNumber(v);
 }
 
 int ListArr::findHeight() {
