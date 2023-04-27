@@ -4,18 +4,18 @@
 using namespace std;
 
 int main() {
-	ListArr listaPrueba = ListArr(1e6);
+	ListArr listaPrueba = ListArr(6);
 	cout << "*** ANTES DE INGRESAR LOS DATOS ***" << endl << endl;
 	listaPrueba.print();
 
-	for (int i = 0; i <4; i++) {
+	for (int i = 0; i <10; i++) {
 		listaPrueba.insert_left(i + 1);
 	}
 
 	cout << "*** DESPUES DE INGRESAR LOS DATOS ***" << endl << endl;
 	listaPrueba.print();
 
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 10; i++) {
 		listaPrueba.insert_right(5 + i);
 	}
 	
@@ -23,8 +23,8 @@ int main() {
 	listaPrueba.print();
 
 	
-	for (int i = 0; i < 5; i++) {
-		listaPrueba.insert(9+i, 1e7);
+	for (int i = 0; i < 10; i++) {
+		listaPrueba.insert(9+i, 4);
 	}
 
 	cout << "*** DESPUES DE INGRESAR LOS DATOS ***" << endl << endl;
@@ -39,7 +39,7 @@ int main() {
 		cout << num << " no encontrado" << endl << endl;
 	}
 
-	num = 8;
+	num = 89;
 	cout << "*** BUSCAMOS EL NUMERO " << num << " ***" << endl;
 	if (listaPrueba.find(num)) {
 		cout << num << " encontrado" << endl << endl;

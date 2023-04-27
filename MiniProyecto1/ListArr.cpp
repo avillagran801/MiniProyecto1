@@ -59,7 +59,7 @@ void ListArr::print() {
 }
 
 bool ListArr::find(int v) {
-	return firstData->findNumber(v);
+	return root->find(v);
 }
 
 int ListArr::findHeight() {

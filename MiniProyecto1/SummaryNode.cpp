@@ -120,7 +120,7 @@ void SummaryNode::addToTheLeft(int number) {
 	if (isLastLevel()) {
 		leftData->addToTheLeft(number);
 	}
-	// Si está en otro nivel, continúa bajando por los SummartNode de la izquierda hasta llegar al nivel 1
+	// Si está en otro nivel, continúa bajando por los SummaryNode de la izquierda hasta llegar al nivel 1
 	else {
 		leftSummary->addToTheLeft(number);
 	}
@@ -163,6 +163,15 @@ void SummaryNode::add(int number, int pos) {
 			//De cualquier otra forma se va por la derecha
 			rightSummary->add(number, pos - leftSummary->getUsedCapacity());
 		}
+	}
+}
+
+bool SummaryNode::find(int number) {
+	if (isLastLevel()) {
+		return leftData->findNumber(number);
+	}
+	else {
+		leftSummary->find(number);
 	}
 }
 

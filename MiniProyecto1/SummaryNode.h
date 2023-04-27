@@ -31,6 +31,7 @@ public:
 	void addToTheLeft(int number);
 	void addToTheRight(int number);
 	void add(int number, int pos);
+	bool find(int number);
 	void printEntireArray();
 };
 
