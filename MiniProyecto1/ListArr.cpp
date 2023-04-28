@@ -16,6 +16,22 @@ ListArr::ListArr(int arrayCapacity) {
 	auxDataNode = nullptr;
 }
 
+void ListArr::NodeDeleter(SummaryNode* x) {
+	SummaryNode* current = x;
+	if (current->getLeftSummary() != nullptr) {
+		NodeDeleter(current->getLeftSummary());
+	}
+	if (current->getRightSummary() != nullptr) {
+		NodeDeleter(current->getRightSummary());
+	}
+	delete current;
+	
+}
+
+ListArr::~ListArr() {
+	NodeDeleter(root);
+}
+
 int ListArr::size() {
 	return root->getUsedCapacity();
 }

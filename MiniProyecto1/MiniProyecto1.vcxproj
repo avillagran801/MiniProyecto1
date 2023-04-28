@@ -127,13 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Array.h" />
     <ClInclude Include="DataNode.h" />
+    <ClInclude Include="LinkedList.h" />
     <ClInclude Include="ListArr.h" />
     <ClInclude Include="SummaryNode.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Array.cpp" />
     <ClCompile Include="CodigoSinUsar.cpp" />
     <ClCompile Include="DataNode.cpp" />
+    <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="ListArr.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SummaryNode.cpp" />

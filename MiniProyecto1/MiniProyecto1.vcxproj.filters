@@ -24,6 +24,12 @@
     <ClInclude Include="SummaryNode.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Array.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ListArr.cpp">
@@ -39,6 +45,12 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="CodigoSinUsar.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedList.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Array.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

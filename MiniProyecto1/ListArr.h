@@ -12,6 +12,8 @@ private:
 
 public:
 	ListArr(int arrayCapacity);
+	~ListArr();
+	void NodeDeleter(SummaryNode* x);
 	int size(); // Retorna la cantidad de elementos almacenados en el ListArr
 	void insert_left(int v); // Inserta un nuevo valor v a la izquierda del ListArr. Equivalentemente, inserta el valor v en el índice 0
 	void insert_right(int v); // Inserta un nuevo valor v a la derecha del ListArr. Equivalentemente, inserta el valor v en el índice size()-1

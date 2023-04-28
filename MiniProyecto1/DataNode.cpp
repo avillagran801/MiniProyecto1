@@ -9,6 +9,8 @@ DataNode::DataNode(int capacity) {
 	next = nullptr;
 }
 
+
+
 void DataNode::addToTheLeft(int number) {
 	// Si está vacío, simplemente insertamos el número en la posición 0
 	if (usedCapacity == 0) {
