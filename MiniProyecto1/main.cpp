@@ -124,9 +124,11 @@ int main() {
 	Array* Larray1;
 	LinkedList* Llist1;
 	ListArr* LListArr1;
+	int n = 10000;
+	int b = 1024;
 
-	int* data = new int[10000];
-	for (int i = 0; i < 10000; ++i) data[i] = rand();
+	int* data = new int[n];
+	for (int i = 0; i < n; ++i) data[i] = rand();
 
 	long long ArrayTime = 0;
 	long long ListTime = 0;
@@ -134,13 +136,13 @@ int main() {
 
 	for (int j = 0; j < 20; ++j) {
 
-		Larray1 = new Array(10000);
+		Larray1 = new Array(n);
 		Llist1 = new LinkedList();
-		LListArr1 = new ListArr(1024);
+		LListArr1 = new ListArr(b);
 
 		auto start1 = chrono::high_resolution_clock::now();
 
-		for (int i = 0; i < 10000; ++i) {
+		for (int i = 0; i < n; ++i) {
 			Larray1->addToTheLeft(data[i]);
 		}
 
@@ -150,7 +152,7 @@ int main() {
 
 		auto start2 = chrono::high_resolution_clock::now();
 
-		for (int i = 0; i < 10000; ++i) {
+		for (int i = 0; i < n; ++i) {
 			Llist1->addToTheLeft(data[i]);
 		}
 
@@ -159,7 +161,7 @@ int main() {
 
 		auto start3 = chrono::high_resolution_clock::now();
 
-		for (int i = 0; i < 10000; ++i) {
+		for (int i = 0; i < n; ++i) {
 			LListArr1->insert_left(data[i]);
 		}
 
@@ -176,22 +178,22 @@ int main() {
 		delete LListArr1;
 	}
 
-	cout << "INSERT LEFT, B = 1024, N=10000" << endl;
+	cout << "INSERT LEFT" << " b = " << b << " n = " << n << endl;
 
 	cout << "Tiempo total Array: " << ArrayTime << " nanosegundos" << endl;
-	cout << "Tiempo promedio Array: " << ArrayTime / long long (10000*20) << " nanosegundos" << endl;
+	cout << "Tiempo promedio Array: " << ArrayTime / long long (n*20) << " nanosegundos" << endl;
 
 	cout << "Tiempo total LinkedList: " << ListTime << " nanosegundos" << endl;
-	cout << "Tiempo promedio: " << ListTime / long long (10000*20) << " nanosegundos" << endl;
+	cout << "Tiempo promedio: " << ListTime / long long (n*20) << " nanosegundos" << endl;
 
 	cout << "Tiempo total ListArr: " << ListArrTime << " nanosegundos" << endl;
-	cout << "Tiempo promedio ListArr: " << ListArrTime / long long(10000*20) << " nanosegundos" << endl << endl;
+	cout << "Tiempo promedio ListArr: " << ListArrTime / long long(n*20) << " nanosegundos" << endl << endl;
 	
 	
 
 
 
-
+	/*
 
 
 	// b = 1024	, n = 100000
@@ -261,7 +263,7 @@ int main() {
 	cout << "Tiempo total ListArr: " << ListArrTime << " nanosegundos" << endl;
 	cout << "Tiempo promedio ListArr: " << ListArrTime / long long(100000 * 20) << " nanosegundos" << endl << endl;
 
-
+	*/
 	//_CrtDumpMemoryLeaks();
 	
 	return 0;
