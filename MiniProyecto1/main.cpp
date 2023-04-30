@@ -4,10 +4,12 @@
 #include "Array.h"
 #include "LinkedList.h"
 #include <crtdbg.h>
+#include <chrono> 
 using namespace std;
 
 int main() {
 
+	/*
 	LinkedList lTest = LinkedList();
 
 	cout << "*** ANTES DE INGRESAR LOS DATOS ***" << endl << endl;
@@ -33,7 +35,7 @@ int main() {
 
 	cout << lTest.find(10) << endl;
 	cout << lTest.find(-1) << endl;
-
+	*/
 
 	/*
 
@@ -114,9 +116,153 @@ int main() {
 	}
 	*/
 
+	//---Experimentos oficiales--
+	
+	//----------------- INSERT_LEFT: --------------------
+	
+	// b = 1024	, n = 10000
+	Array* Larray1;
+	LinkedList* Llist1;
+	ListArr* LListArr1;
+
+	int* data = new int[10000];
+	for (int i = 0; i < 10000; ++i) data[i] = rand();
+
+	long long ArrayTime = 0;
+	long long ListTime = 0;
+	long long ListArrTime = 0;
+
+	for (int j = 0; j < 20; ++j) {
+
+		Larray1 = new Array(10000);
+		Llist1 = new LinkedList();
+		LListArr1 = new ListArr(1024);
+
+		auto start1 = chrono::high_resolution_clock::now();
+
+		for (int i = 0; i < 10000; ++i) {
+			Larray1->addToTheLeft(data[i]);
+		}
 
 
-	_CrtDumpMemoryLeaks();
+		auto stop1 = chrono::high_resolution_clock::now();
+		auto duration1 = chrono::duration_cast<chrono::nanoseconds>(stop1 - start1);
+
+		auto start2 = chrono::high_resolution_clock::now();
+
+		for (int i = 0; i < 10000; ++i) {
+			Llist1->addToTheLeft(data[i]);
+		}
+
+		auto stop2 = chrono::high_resolution_clock::now();
+		auto duration2 = chrono::duration_cast<chrono::nanoseconds>(stop2 - start2);
+
+		auto start3 = chrono::high_resolution_clock::now();
+
+		for (int i = 0; i < 10000; ++i) {
+			LListArr1->insert_left(data[i]);
+		}
+
+		auto stop3 = chrono::high_resolution_clock::now();
+		auto duration3 = chrono::duration_cast<chrono::nanoseconds>(stop3 - start3);
+
+		
+		ArrayTime += duration1.count();
+		ListTime += duration2.count();
+		ListArrTime += duration3.count();
+
+		delete Larray1;
+		delete Llist1;
+		delete LListArr1;
+	}
+
+	cout << "INSERT LEFT, B = 1024, N=10000" << endl;
+
+	cout << "Tiempo total Array: " << ArrayTime << " nanosegundos" << endl;
+	cout << "Tiempo promedio Array: " << ArrayTime / long long (10000*20) << " nanosegundos" << endl;
+
+	cout << "Tiempo total LinkedList: " << ListTime << " nanosegundos" << endl;
+	cout << "Tiempo promedio: " << ListTime / long long (10000*20) << " nanosegundos" << endl;
+
+	cout << "Tiempo total ListArr: " << ListArrTime << " nanosegundos" << endl;
+	cout << "Tiempo promedio ListArr: " << ListArrTime / long long(10000*20) << " nanosegundos" << endl << endl;
+	
+	
+
+
+
+
+
+
+	// b = 1024	, n = 100000
+	Array* Larray2;
+	LinkedList* Llist2;
+	ListArr* LListArr2;
+
+	int* data2 = new int[100000];
+	for (int i = 0; i < 100000; ++i) data2[i] = rand();
+
+	ArrayTime = 0;
+	ListTime = 0;
+	ListArrTime = 0;
+
+	for (int j = 0; j < 20; ++j) {
+
+		Larray2 = new Array(100000);
+		Llist2 = new LinkedList();
+		LListArr2 = new ListArr(1024);
+
+		auto start1 = chrono::high_resolution_clock::now();
+
+		for (int i = 0; i < 100000; ++i) {
+			Larray2->addToTheLeft(data2[i]);
+		}
+
+
+		auto stop1 = chrono::high_resolution_clock::now();
+		auto duration1 = chrono::duration_cast<chrono::nanoseconds>(stop1 - start1);
+
+		auto start2 = chrono::high_resolution_clock::now();
+
+		for (int i = 0; i < 100000; ++i) {
+			Llist2->addToTheLeft(data2[i]);
+		}
+
+		auto stop2 = chrono::high_resolution_clock::now();
+		auto duration2 = chrono::duration_cast<chrono::nanoseconds>(stop2 - start2);
+
+		auto start3 = chrono::high_resolution_clock::now();
+
+		for (int i = 0; i < 100000; ++i) {
+			LListArr2->insert_left(data2[i]);
+		}
+
+		auto stop3 = chrono::high_resolution_clock::now();
+		auto duration3 = chrono::duration_cast<chrono::nanoseconds>(stop3 - start3);
+
+
+		ArrayTime += duration1.count();
+		ListTime += duration2.count();
+		ListArrTime += duration3.count();
+
+		delete Larray2;
+		delete Llist2;
+		delete LListArr2;
+	}
+
+	cout << "INSERT LEFT, B = 1024, N=100000" << endl;
+
+	cout << "Tiempo total Array: " << ArrayTime << " nanosegundos" << endl;
+	cout << "Tiempo promedio Array: " << ArrayTime / long long(100000 * 20) << " nanosegundos" << endl;
+
+	cout << "Tiempo total LinkedList: " << ListTime << " nanosegundos" << endl;
+	cout << "Tiempo promedio: " << ListTime / long long(100000 * 20) << " nanosegundos" << endl;
+
+	cout << "Tiempo total ListArr: " << ListArrTime << " nanosegundos" << endl;
+	cout << "Tiempo promedio ListArr: " << ListArrTime / long long(100000 * 20) << " nanosegundos" << endl << endl;
+
+
+	//_CrtDumpMemoryLeaks();
 	
 	return 0;
 } 
