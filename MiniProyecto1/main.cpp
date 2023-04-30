@@ -117,15 +117,15 @@ int main() {
 	*/
 
 	//---Experimentos oficiales--
+	//La idea es solo modificar las variables n y b para hacer los experimentos, junto con la función a probar
+	//Función actual: Insert Left
 	
-	//----------------- INSERT_LEFT: --------------------
 	
-	// b = 1024	, n = 10000
 	Array* Larray1;
 	LinkedList* Llist1;
 	ListArr* LListArr1;
 	int n = 10000;
-	int b = 1024;
+	int b = 128;
 
 	int* data = new int[n];
 	for (int i = 0; i < n; ++i) data[i] = rand();
@@ -181,13 +181,13 @@ int main() {
 	cout << "INSERT LEFT" << " b = " << b << " n = " << n << endl;
 
 	cout << "Tiempo total Array: " << ArrayTime << " nanosegundos" << endl;
-	cout << "Tiempo promedio Array: " << ArrayTime / long long (n*20) << " nanosegundos" << endl;
+	cout << "Tiempo promedio Array: " << ArrayTime / long long (20) << " nanosegundos" << endl;
 
 	cout << "Tiempo total LinkedList: " << ListTime << " nanosegundos" << endl;
-	cout << "Tiempo promedio: " << ListTime / long long (n*20) << " nanosegundos" << endl;
+	cout << "Tiempo promedio: " << ListTime / long long (20) << " nanosegundos" << endl;
 
 	cout << "Tiempo total ListArr: " << ListArrTime << " nanosegundos" << endl;
-	cout << "Tiempo promedio ListArr: " << ListArrTime / long long(n*20) << " nanosegundos" << endl << endl;
+	cout << "Tiempo promedio ListArr: " << ListArrTime / long long(20) << " nanosegundos" << endl << endl;
 	
 	
 
