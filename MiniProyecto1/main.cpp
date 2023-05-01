@@ -125,7 +125,7 @@ int main() {
 	LinkedList* Llist1;
 	ListArr* LListArr1;
 	int n = 10000;
-	int b = 128;
+	int b = 1024;
 
 	int* data = new int[n];
 	for (int i = 0; i < n; ++i) data[i] = rand();
@@ -134,22 +134,29 @@ int main() {
 	long long ListTime = 0;
 	long long ListArrTime = 0;
 
-	for (int j = 0; j < 20; ++j) {
+	for (int j = 0; j < 1; ++j) {
 
+		
+		
+		
 		Larray1 = new Array(n);
-		Llist1 = new LinkedList();
-		LListArr1 = new ListArr(b);
-
 		auto start1 = chrono::high_resolution_clock::now();
 
 		for (int i = 0; i < n; ++i) {
-			Larray1->addToTheLeft(data[i]);
+			Larray1->addToTheRight(i);
 		}
 
 
 		auto stop1 = chrono::high_resolution_clock::now();
-		auto duration1 = chrono::duration_cast<chrono::nanoseconds>(stop1 - start1);
+		auto duration1 = chrono::duration_cast<chrono::milliseconds>(stop1 - start1);
+		Larray1->print();
+		ArrayTime += duration1.count();
+		delete Larray1;
 
+		
+
+		/*
+		Llist1 = new LinkedList();
 		auto start2 = chrono::high_resolution_clock::now();
 
 		for (int i = 0; i < n; ++i) {
@@ -157,8 +164,14 @@ int main() {
 		}
 
 		auto stop2 = chrono::high_resolution_clock::now();
-		auto duration2 = chrono::duration_cast<chrono::nanoseconds>(stop2 - start2);
+		auto duration2 = chrono::duration_cast<chrono::milliseconds>(stop2 - start2);
 
+		ListTime += duration2.count();
+		delete Llist1;
+		*/
+
+		/*
+		LListArr1 = new ListArr(b);
 		auto start3 = chrono::high_resolution_clock::now();
 
 		for (int i = 0; i < n; ++i) {
@@ -166,32 +179,35 @@ int main() {
 		}
 
 		auto stop3 = chrono::high_resolution_clock::now();
-		auto duration3 = chrono::duration_cast<chrono::nanoseconds>(stop3 - start3);
+		auto duration3 = chrono::duration_cast<chrono::milliseconds>(stop3 - start3);
 
-		
-		ArrayTime += duration1.count();
-		ListTime += duration2.count();
 		ListArrTime += duration3.count();
-
-		delete Larray1;
-		delete Llist1;
 		delete LListArr1;
+		*/
+		
+		
+		
 	}
 
-	cout << "INSERT LEFT" << " b = " << b << " n = " << n << endl;
+	cout << "INSERT RIGHT" << " b = " << b << " n = " << n << endl <<endl;
 
-	cout << "Tiempo total Array: " << ArrayTime << " nanosegundos" << endl;
-	cout << "Tiempo promedio Array: " << ArrayTime / long long (20) << " nanosegundos" << endl;
-
-	cout << "Tiempo total LinkedList: " << ListTime << " nanosegundos" << endl;
-	cout << "Tiempo promedio: " << ListTime / long long (20) << " nanosegundos" << endl;
-
-	cout << "Tiempo total ListArr: " << ListArrTime << " nanosegundos" << endl;
-	cout << "Tiempo promedio ListArr: " << ListArrTime / long long(20) << " nanosegundos" << endl << endl;
 	
+	cout << "Tiempo total Array: " << ArrayTime << " milisegundos" << endl;
+	cout << "Tiempo promedio Array: " << ArrayTime / long long(20) << " milisegundos" << endl << endl;
 	
 
+	/*
+	cout << "Tiempo total LinkedList: " << ListTime << " milisegundos" << endl;
+	cout << "Tiempo promedio LinkedList: " << ListTime / long long (20) << " milisegundos" << endl<< endl;
+	*/
 
+	/*
+	cout << "Tiempo total ListArr: " << ListArrTime << " milisegundos" << endl;
+	cout << "Tiempo promedio ListArr: " << ListArrTime / long long(20) << " milisegundos" << endl << endl;
+	*/
+	
+
+	
 
 	/*
 

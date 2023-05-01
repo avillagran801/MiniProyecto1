@@ -1,2 +1,4 @@
 ﻿  main.cpp
+C:\Users\aceb3\Documents\GitHub\MiniProyecto1\MiniProyecto1\main.cpp(125,14): warning C4101: 'Llist1': variable local sin referencia
+C:\Users\aceb3\Documents\GitHub\MiniProyecto1\MiniProyecto1\main.cpp(126,11): warning C4101: 'LListArr1': variable local sin referencia
   MiniProyecto1.vcxproj -> C:\Users\aceb3\Documents\GitHub\MiniProyecto1\MiniProyecto1\x64\Debug\MiniProyecto1.exe

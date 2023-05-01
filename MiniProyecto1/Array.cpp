@@ -25,9 +25,6 @@ void Array::addToTheLeft(int number) {
 
 void Array::addToTheRight(int number) {
 	if (usedCapacity + 1 <= fullCapacity) {
-		for (int i = 0; i <= fullCapacity - usedCapacity; i++) {
-			data[fullCapacity - i] = data[fullCapacity - i - 1];
-		}
 		data[usedCapacity] = number;
 		++usedCapacity;
 	}
