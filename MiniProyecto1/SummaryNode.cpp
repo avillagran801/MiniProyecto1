@@ -135,7 +135,7 @@ void SummaryNode::addToTheRight(int number){
 void SummaryNode::add(int number, int pos) {
 	//Se considera que el primer elemento lleva la posición 1.
 	if(isLastLevel()){
-		if (leftData->getUsedCapacity() > pos - 1) {
+		if (leftData->getUsedCapacity() >= pos - 1) {
 			leftData->add(number, pos);
 		}
 		else {

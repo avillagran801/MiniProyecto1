@@ -67,7 +67,7 @@ int main() {
 	*/
 
 
-	/*
+	
 	ListArr listaPrueba = ListArr(6);
 	cout << "*** ANTES DE INGRESAR LOS DATOS ***" << endl << endl;
 	listaPrueba.print();
@@ -83,7 +83,7 @@ int main() {
 	
 
 	for (int i = 0; i < 10; i++) {
-		listaPrueba.insert_right(5 + i);
+		listaPrueba.insert_right(10 + i);
 	}
 	
 	cout << "*** DESPUES DE INGRESAR LOS DATOS ***" << endl << endl;
@@ -91,7 +91,7 @@ int main() {
 
 	
 	for (int i = 0; i < 10; i++) {
-		listaPrueba.insert(9+i, 4);
+		listaPrueba.insert(-i-1, 4);
 	}
 
 	cout << "*** DESPUES DE INGRESAR LOS DATOS ***" << endl << endl;
@@ -114,13 +114,14 @@ int main() {
 	else {
 		cout << num << " no encontrado" << endl << endl;
 	}
-	*/
+	
 
 	//---Experimentos oficiales--
 	//La idea es solo modificar las variables n y b para hacer los experimentos, junto con la función a probar
 	//Función actual: Insert Left
 	
 	
+	/*
 	Array* Larray1;
 	LinkedList* Llist1;
 	ListArr* LListArr1;
@@ -187,15 +188,15 @@ int main() {
 		
 		
 		
-	}
-
-	cout << "INSERT RIGHT" << " b = " << b << " n = " << n << endl <<endl;
+	//}
+	/*
+	std::cout << "INSERT RIGHT" << " b = " << b << " n = " << n << endl <<endl;
 
 	
-	cout << "Tiempo total Array: " << ArrayTime << " milisegundos" << endl;
-	cout << "Tiempo promedio Array: " << ArrayTime / long long(20) << " milisegundos" << endl << endl;
+	std::cout << "Tiempo total Array: " << ArrayTime << " milisegundos" << endl;
+	std::cout << "Tiempo promedio Array: " << ArrayTime / long long(20) << " milisegundos" << endl << endl;
 	
-
+	*/
 	/*
 	cout << "Tiempo total LinkedList: " << ListTime << " milisegundos" << endl;
 	cout << "Tiempo promedio LinkedList: " << ListTime / long long (20) << " milisegundos" << endl<< endl;
