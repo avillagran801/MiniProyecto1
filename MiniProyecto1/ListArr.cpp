@@ -8,28 +8,11 @@ using namespace std;
 // Cuando creamos el ListArr, creamos un primer SummaryNode raiz asociado a un DataNode vacío
 ListArr::ListArr(int arrayCapacity) {
 	root = new SummaryNode();
-	DataNode* aux = new DataNode(arrayCapacity);
-	firstData = aux;
-	root->setLeftData(aux);
+	firstData = new DataNode(arrayCapacity);
+	root->setLeftData(firstData);
 	numDataNodes = 1;
 	maxLevel = 1;
 	auxDataNode = nullptr;
-}
-
-void ListArr::NodeDeleter(SummaryNode* x) {
-	SummaryNode* current = x;
-	if (current->getLeftSummary() != nullptr) {
-		NodeDeleter(current->getLeftSummary());
-	}
-	if (current->getRightSummary() != nullptr) {
-		NodeDeleter(current->getRightSummary());
-	}
-	delete current;
-	
-}
-
-ListArr::~ListArr() {
-	NodeDeleter(root);
 }
 
 int ListArr::size() {

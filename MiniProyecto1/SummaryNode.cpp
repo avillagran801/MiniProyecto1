@@ -11,8 +11,6 @@ SummaryNode::SummaryNode() {
 	rightSummary = nullptr;
 }
 
-
-
 int SummaryNode::getUsedCapacity() {
 	updateUsedCapacity();
 	return usedCapacity;

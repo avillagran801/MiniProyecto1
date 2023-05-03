@@ -9,8 +9,6 @@ DataNode::DataNode(int capacity) {
 	next = nullptr;
 }
 
-
-
 void DataNode::addToTheLeft(int number) {
 	// Si está vacío, simplemente insertamos el número en la posición 0
 	if (usedCapacity == 0) {
@@ -91,7 +89,7 @@ void DataNode::setNext(DataNode* auxNext) {
 }
 
 bool DataNode::findNumber(int number) {
-	for (int i = 0; i < fullCapacity; i++) {
+	for (int i = 0; i < usedCapacity; i++) {
 		if (data[i] == number) {
 			return true;
 			break;
@@ -128,7 +126,6 @@ void DataNode::printAllLinkedData() {
 		cout << endl;
 		next->printAllLinkedData();
 	}
-	// cout << endl;
 }
 
 int* DataNode::getData() {
