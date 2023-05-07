@@ -67,7 +67,7 @@ int main() {
 	*/
 
 
-	
+	/*
 	ListArr listaPrueba = ListArr(6);
 	cout << "*** ANTES DE INGRESAR LOS DATOS ***" << endl << endl;
 	listaPrueba.print();
@@ -76,20 +76,20 @@ int main() {
 		listaPrueba.insert_left(i + 1);
 	}
 
-	
+
 	cout << "*** DESPUES DE INGRESAR LOS DATOS ***" << endl << endl;
 	listaPrueba.print();
 
-	
+
 
 	for (int i = 0; i < 10; i++) {
 		listaPrueba.insert_right(10 + i);
 	}
-	
+
 	cout << "*** DESPUES DE INGRESAR LOS DATOS ***" << endl << endl;
 	listaPrueba.print();
 
-	
+
 	for (int i = 0; i < 10; i++) {
 		listaPrueba.insert(-i-1, 4);
 	}
@@ -114,18 +114,18 @@ int main() {
 	else {
 		cout << num << " no encontrado" << endl << endl;
 	}
-	
+	*/
 
 	//---Experimentos oficiales--
 	//La idea es solo modificar las variables n y b para hacer los experimentos, junto con la función a probar
-	//Función actual: Insert Left
-	
-	
+	//Función actual: Inserts
+
+
 	/*
 	Array* Larray1;
 	LinkedList* Llist1;
 	ListArr* LListArr1;
-	int n = 10000;
+	int n = 1000000;
 	int b = 1024;
 
 	int* data = new int[n];
@@ -137,14 +137,14 @@ int main() {
 
 	for (int j = 0; j < 1; ++j) {
 
-		
-		
-		
+
+
+		/*
 		Larray1 = new Array(n);
 		auto start1 = chrono::high_resolution_clock::now();
 
 		for (int i = 0; i < n; ++i) {
-			Larray1->addToTheRight(i);
+			Larray1->addToTheRight(data[i]);
 		}
 
 
@@ -153,15 +153,15 @@ int main() {
 		Larray1->print();
 		ArrayTime += duration1.count();
 		delete Larray1;
+		*/
 
-		
 
 		/*
 		Llist1 = new LinkedList();
 		auto start2 = chrono::high_resolution_clock::now();
 
 		for (int i = 0; i < n; ++i) {
-			Llist1->addToTheLeft(data[i]);
+			Llist1->addToTheRight(data[i]);
 		}
 
 		auto stop2 = chrono::high_resolution_clock::now();
@@ -185,102 +185,142 @@ int main() {
 		ListArrTime += duration3.count();
 		delete LListArr1;
 		*/
-		
-		
-		
-	//}
-	/*
-	std::cout << "INSERT RIGHT" << " b = " << b << " n = " << n << endl <<endl;
-
-	
-	std::cout << "Tiempo total Array: " << ArrayTime << " milisegundos" << endl;
-	std::cout << "Tiempo promedio Array: " << ArrayTime / long long(20) << " milisegundos" << endl << endl;
-	
-	*/
-	/*
-	cout << "Tiempo total LinkedList: " << ListTime << " milisegundos" << endl;
-	cout << "Tiempo promedio LinkedList: " << ListTime / long long (20) << " milisegundos" << endl<< endl;
-	*/
-
-	/*
-	cout << "Tiempo total ListArr: " << ListArrTime << " milisegundos" << endl;
-	cout << "Tiempo promedio ListArr: " << ListArrTime / long long(20) << " milisegundos" << endl << endl;
-	*/
-	
-
-	
-
-	/*
 
 
-	// b = 1024	, n = 100000
-	Array* Larray2;
-	LinkedList* Llist2;
-	ListArr* LListArr2;
 
-	int* data2 = new int[100000];
-	for (int i = 0; i < 100000; ++i) data2[i] = rand();
+		//}
 
+		/*
+		std::cout << "INSERT RIGHT" << " b = " << b << " n = " << n << endl <<endl;
+
+		/*
+		std::cout << "Tiempo total Array: " << ArrayTime << " milisegundos" << endl;
+		std::cout << "Tiempo promedio Array: " << ArrayTime / long long(20) << " milisegundos" << endl << endl;
+
+		*/
+
+		//cout << "Tiempo total LinkedList: " << ListTime << " milisegundos" << endl;
+		//cout << "Tiempo promedio LinkedList: " << ListTime / long long (20) << " milisegundos" << endl<< endl;
+
+
+		/*
+		cout << "Tiempo total ListArr: " << ListArrTime << " milisegundos" << endl;
+		cout << "Tiempo promedio ListArr: " << ListArrTime / long long(20) << " milisegundos" << endl << endl;
+		*/
+
+
+
+
+
+
+		//Testeo de función find
+
+		// b = 1024	, n = 100000
+	Array* Larray1;
+	LinkedList* Llist1;
+	ListArr* LListArr1;
+	int n = 100000;
+	int b = 64;
+	int* data = new int[n]; // Arreglo con números a poner en Arreglo, LinkedList o ListArr
+	for (int i = 0; i < n; ++i) {
+		data[i] = rand(); // Números del 0 al RAND_MAX()
+	}
+	int searched = 0;
+
+	long long ArrayTime, ListTime, ListArrTime;
 	ArrayTime = 0;
 	ListTime = 0;
 	ListArrTime = 0;
 
-	for (int j = 0; j < 20; ++j) {
+		std::cout << "FIND" << " b = " << b << " n = " << n << endl << endl;
 
-		Larray2 = new Array(100000);
-		Llist2 = new LinkedList();
-		LListArr2 = new ListArr(1024);
 
-		auto start1 = chrono::high_resolution_clock::now();
-
-		for (int i = 0; i < 100000; ++i) {
-			Larray2->addToTheLeft(data2[i]);
+		/*
+		Larray1 = new Array(n);
+		for (int i = 0; i < n; ++i) {
+			Larray1->addToTheRight(data[i]); //Método más rápido para Array
 		}
 
+		for (int i = 0; i < 20; ++i) {
 
-		auto stop1 = chrono::high_resolution_clock::now();
-		auto duration1 = chrono::duration_cast<chrono::nanoseconds>(stop1 - start1);
+			searched = 2 * rand();
 
-		auto start2 = chrono::high_resolution_clock::now();
+			auto start1 = chrono::high_resolution_clock::now();
 
-		for (int i = 0; i < 100000; ++i) {
-			Llist2->addToTheLeft(data2[i]);
+			Larray1->find(searched);
+
+			auto stop1 = chrono::high_resolution_clock::now();
+			auto duration1 = chrono::duration_cast<chrono::microseconds>(stop1 - start1);
+
+			ArrayTime += duration1.count();
 		}
 
-		auto stop2 = chrono::high_resolution_clock::now();
-		auto duration2 = chrono::duration_cast<chrono::nanoseconds>(stop2 - start2);
+		delete Larray1;
 
-		auto start3 = chrono::high_resolution_clock::now();
+		std::cout << "Tiempo total Array: " << ArrayTime << " microsegundos" << endl;
+		std::cout << "Tiempo promedio Array: " << ArrayTime / long long(20) << " microsegundos" << endl;
+		*/
 
-		for (int i = 0; i < 100000; ++i) {
-			LListArr2->insert_left(data2[i]);
+		
+		/*
+		Llist1 = new LinkedList();
+		for (int i = 0; i < n; ++i) {
+
+			Llist1->addToTheLeft(data[i]); //Método más rápdido para LinkedList
 		}
 
-		auto stop3 = chrono::high_resolution_clock::now();
-		auto duration3 = chrono::duration_cast<chrono::nanoseconds>(stop3 - start3);
+		for (int i = 0; i < 20; ++i) {
+
+			searched = 2 * rand();
+
+			auto start2 = chrono::high_resolution_clock::now();
+
+			Llist1->find(searched);
+
+			auto stop2 = chrono::high_resolution_clock::now();
+			auto duration2 = chrono::duration_cast<chrono::milliseconds>(stop2 - start2);
+
+			ListTime += duration2.count();
+		}
+
+		delete Llist1;
+		
+		std::cout << "Tiempo total LinkedList: " << ListTime << " milliseconds" << endl;
+		std::cout << "Tiempo promedio: " << ListTime / long long(20) << " milliseconds" << endl;
+		*/
+		
+
+		
+		LListArr1 = new ListArr(b);
+		for (int i = 0; i < n; ++i) {
+			LListArr1->insert_left(data[i]); //Método más rápido para n grande en ListArr
+		}
+
+		for (int i = 0; i < 20; ++i) {
+
+			searched = 2 * rand();
+
+			auto start3 = chrono::high_resolution_clock::now();
+
+			LListArr1->find(searched);
+
+			auto stop3 = chrono::high_resolution_clock::now();
+			auto duration3 = chrono::duration_cast<chrono::microseconds>(stop3 - start3);
+
+			ListArrTime += duration3.count();
+		}
+
+		delete LListArr1;
+		
+		std::cout << "Tiempo total ListArr: " << ListArrTime << " microseconds" << endl;
+		std::cout << "Tiempo promedio ListArr: " << ListArrTime / long long(20) << " microseconds" << endl << endl;
+		
 
 
-		ArrayTime += duration1.count();
-		ListTime += duration2.count();
-		ListArrTime += duration3.count();
 
-		delete Larray2;
-		delete Llist2;
-		delete LListArr2;
-	}
 
-	cout << "INSERT LEFT, B = 1024, N=100000" << endl;
 
-	cout << "Tiempo total Array: " << ArrayTime << " nanosegundos" << endl;
-	cout << "Tiempo promedio Array: " << ArrayTime / long long(100000 * 20) << " nanosegundos" << endl;
-
-	cout << "Tiempo total LinkedList: " << ListTime << " nanosegundos" << endl;
-	cout << "Tiempo promedio: " << ListTime / long long(100000 * 20) << " nanosegundos" << endl;
-
-	cout << "Tiempo total ListArr: " << ListArrTime << " nanosegundos" << endl;
-	cout << "Tiempo promedio ListArr: " << ListArrTime / long long(100000 * 20) << " nanosegundos" << endl << endl;
-
-	*/
+	
 	//_CrtDumpMemoryLeaks();
 	
 	return 0;

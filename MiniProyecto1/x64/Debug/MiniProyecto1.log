@@ -1,12 +1,4 @@
-﻿  Array.cpp
-  CodigoSinUsar.cpp
-  DataNode.cpp
-  LinkedList.cpp
-  ListArr.cpp
-  main.cpp
-  SummaryNode.cpp
-  Generando código...
-C:\Users\anii-\Desktop\Estructuras de datos\avillagran801\MiniProyecto1\MiniProyecto1\SummaryNode.cpp(81): warning C4715: 'SummaryNode::getNumDataNodes': no todas las rutas de acceso de control devuelven un valor
-C:\Users\anii-\Desktop\Estructuras de datos\avillagran801\MiniProyecto1\MiniProyecto1\SummaryNode.cpp(178): warning C4715: 'SummaryNode::find': no todas las rutas de acceso de control devuelven un valor
-C:\Users\anii-\Desktop\Estructuras de datos\avillagran801\MiniProyecto1\MiniProyecto1\DataNode.cpp(107): warning C4715: 'DataNode::findNumber': no todas las rutas de acceso de control devuelven un valor
-  MiniProyecto1.vcxproj -> C:\Users\anii-\Desktop\Estructuras de datos\avillagran801\MiniProyecto1\MiniProyecto1\x64\Debug\MiniProyecto1.exe
+﻿  main.cpp
+C:\Users\aceb3\Documents\GitHub\MiniProyecto1\MiniProyecto1\main.cpp(220,14): warning C4101: 'Llist1': variable local sin referencia
+C:\Users\aceb3\Documents\GitHub\MiniProyecto1\MiniProyecto1\main.cpp(219,9): warning C4101: 'Larray1': variable local sin referencia
+  MiniProyecto1.vcxproj -> C:\Users\aceb3\Documents\GitHub\MiniProyecto1\MiniProyecto1\x64\Debug\MiniProyecto1.exe
